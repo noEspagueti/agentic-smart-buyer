@@ -1,4 +1,19 @@
+from app.agent.agent import ShoppingAgent
+
+
 class ProcessMessageUseCase:
 
-    def execute(self, message: str) -> str:
-        return f"SmartBuyer recibió: {message}"
+    def __init__(
+        self,
+        shopping_agent: ShoppingAgent
+    ):
+        self.shopping_agent = shopping_agent
+
+    async def execute(
+        self,
+        message: str
+    ) -> str:
+
+        return await self.shopping_agent.process(
+            message
+        )
